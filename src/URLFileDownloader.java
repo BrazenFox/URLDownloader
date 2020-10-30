@@ -22,8 +22,8 @@ public class URLFileDownloader extends URLFile {
     public void pathMaker(String path) {
         if (path != null && this.pathValidation(path)) {
             if (path.substring(path.lastIndexOf("/")).contains(".")) {
-                this.name = path.substring(path.lastIndexOf("/")).split("\\.")[0];
-                this.type = "." + path.substring(path.lastIndexOf("/")).split("\\.")[1];
+                this.name = path.substring(path.lastIndexOf("/") + 1).split("\\.")[0];
+                this.type = "." + path.substring(path.lastIndexOf("/") + 1).split("\\.")[1];
                 this.path = path.substring(0, path.lastIndexOf("/"));
             } else {
                 this.name = super.getName();
@@ -39,7 +39,7 @@ public class URLFileDownloader extends URLFile {
 
     public void checkDirectory() {
         File file = new File(this.path);
-        this.checkFile(new File(file.exists() ? this.path : super.getPath() + "/" + this.name + this.type));
+        this.checkFile(new File((file.exists() ? this.path : super.getPath()) + "/" + this.name + this.type));
     }
 
     public void checkFile(File file) {

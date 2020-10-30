@@ -15,6 +15,7 @@ public class URLFileHtml {
     public URLFileHtml(URLFileDownloader file) {
         this.path = file.getPath();
         this.name = file.getName();
+        //System.out.println(this.name);
         this.type = file.getType();
         this.host = file.getHost();
         this.charSet = findCharset();
@@ -61,6 +62,7 @@ public class URLFileHtml {
                 Matcher matcherImgOrLink = patternImgOrLink.matcher(line);
                 if (matcherImgOrLink.find()) {
                     System.out.println("link: " + this.urlValidation(matcherImgOrLink.group()));
+                    System.out.println(this.downloadSupportFiles(this.urlValidation(matcherImgOrLink.group())));
                     this.htmlBuffer.add(line.replace(matcherImgOrLink.group(), this.downloadSupportFiles(this.urlValidation(matcherImgOrLink.group()))) + "\r");
                 } else {
                     this.htmlBuffer.add(line + "\r");
@@ -95,6 +97,7 @@ public class URLFileHtml {
         String nameFile;
         String typeFile;
         String pathFile = this.path + "/" + this.name + "_files";
+        //System.out.println(this.name);
         if (url.matches("^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$")) {
             if (url.split("/")[url.split("/").length - 1].contains(".")) {
                 nameFile = url.split("/")[url.split("/").length - 1].split("\\.")[0];
