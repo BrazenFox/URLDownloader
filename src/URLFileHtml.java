@@ -43,6 +43,8 @@ public class URLFileHtml {
                     break;
                 }
             }
+            if (charset == null)
+                charset = "utf-8";
             return charset;
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,7 +53,9 @@ public class URLFileHtml {
     }
 
     public void downloaderFiles() {
-        Pattern patternImgOrLink = Pattern.compile("((?<=(<img src=\"))[0-9A-za-z-.,/':=]+)|(?<=(<link rel(.{0,})))(?<=(href=\"))[0-9A-za-z-.,/':=]+(?<=(\".{0,}))", Pattern.DOTALL);
+        //Pattern patternImgOrLink = Pattern.compile("<img src=\"([0-9A-za-z-:.,/_'=]+)\".+?>|<link rel=.+href=\"([0-9A-za-z-.,/'=]+).+>");//[0-9A-za-z-:.,/_'=?]+
+        //Pattern patternImgOrLink = Pattern.compile("<img src=\"([0-9A-za-z-:;.,/_'=]+)\".+?|<link.+href=\"([0-9A-za-z-:;_.,/'=]+).+>");//[0-9A-za-z-:.,/_'=?]+
+        Pattern patternImgOrLink = Pattern.compile("<img src=\"([0-9A-za-z-_.:;&,/'=]+).*\".+|<link.+href=\"([0-9A-za-z-:;_.,/'=]+).+>");
         File file = new File(this.path + "/" + this.name + this.type);
         try {
             FileReader fileReader = new FileReader(file);
@@ -61,9 +65,9 @@ public class URLFileHtml {
             while ((line = reader.readLine()) != null) {
                 Matcher matcherImgOrLink = patternImgOrLink.matcher(line);
                 if (matcherImgOrLink.find()) {
-                    System.out.println("link: " + this.urlValidation(matcherImgOrLink.group()));
-                    System.out.println(this.downloadSupportFiles(this.urlValidation(matcherImgOrLink.group())));
-                    this.htmlBuffer.add(line.replace(matcherImgOrLink.group(), this.downloadSupportFiles(this.urlValidation(matcherImgOrLink.group()))) + "\r");
+                    String imgOrLink = (matcherImgOrLink.group(1) == null ? matcherImgOrLink.group(2) : matcherImgOrLink.group(1));
+                    System.out.println("link: " + this.downloadSupportFiles(this.urlValidation(imgOrLink)));
+                    this.htmlBuffer.add(line.replace(imgOrLink, this.downloadSupportFiles(this.urlValidation(imgOrLink))) + "\r");
                 } else {
                     this.htmlBuffer.add(line + "\r");
                 }
