@@ -44,15 +44,15 @@ public class URLFileDownloader extends URLFile {
 
     public void checkFile(File file) {
         if (file.isFile()) {
-            System.out.println("переименовать r или перезаписать o");
+            System.out.println("rename 'r' or overwrite 'o'");
             Scanner sc = new Scanner(System.in);
             String answer = sc.next();
             while (!(answer.equals("o") || answer.equals("r"))) {
-                System.out.println("некорректный ответ");
+                System.out.println("incorrect answer");
                 answer = sc.next();
             }
             if (answer.equals("r")) {
-                System.out.println("Введите имя файла");
+                System.out.println("Enter file name");
                 this.name = sc.next();
             }
         }

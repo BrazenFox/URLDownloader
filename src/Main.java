@@ -33,11 +33,12 @@ public class Main {
                 run("https://sb.edu-netcracker.com/user/default.xhtml", "src", true);
                 //run("https://stackoverflow.com/questions/24874404/java-regex-look-behind-group-does-not-have-obvious-maximum-length-error?lq=1",  "C://Users/DmitryMarokhonov/Desktop/test", open);
                 //run("https://www.goodfon.ru/", "C://Users/DmitryMarokhonov/Desktop/test", open);
-                System.out.println("некорректный ввод");
+                System.out.println("incorrect input");
         }
 
     }
-    public static void run(String url, String path, boolean open){
+
+    public static void run(String url, String path, boolean open) {
         URLFileDownloader downloader = new URLFileDownloader(url, path);
 
         if (downloader.getType().equals(".html")) {
