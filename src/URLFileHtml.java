@@ -112,8 +112,12 @@ public class URLFileHtml {
                     return this.name + "_files/" + nameFile + typeFile;
                 } else return url;
             } else {
-
-                return url;
+                nameFile = url.split("/")[url.split("/").length - 1];
+                typeFile = ".jpg";
+                String path = pathFile + "/" + nameFile + typeFile;
+                if (this.downloader(path, url)) {
+                    return this.name + "_files/" + nameFile + typeFile;
+                } else return url;
             }
         } else return url;
     }

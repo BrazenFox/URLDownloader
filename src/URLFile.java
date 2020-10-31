@@ -41,20 +41,21 @@ public class URLFile {
 
                 if (name.split("\\.").length == 2) {
                     type = "." + name.split("\\.")[1];
+                    if (type.equals(".xhtml"))
+                        type = ".html";
                     name = name.split("\\.")[0];
                 } else
                     type = ".html";
                 this.name = name;
                 this.type = type;
-            }
-            else {
+            } else {
                 this.name = "index";
                 this.type = ".html";
             }
             this.host = url.split("/")[0] + "/" + url.split("/")[1] + "/" + url.split("/")[2];
             this.path = "src";
             this.url = url;
-        }else
+        } else
             throw new IllegalArgumentException();
     }
 
