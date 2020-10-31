@@ -101,6 +101,7 @@ public class URLFileHtml {
         String nameFile;
         String typeFile;
         String pathFile = this.path + "/" + this.name + "_files";
+        url = url.split("\\?")[0];
         //System.out.println(this.name);
         if (url.matches("^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$")) {
             if (url.split("/")[url.split("/").length - 1].contains(".")) {
@@ -110,7 +111,10 @@ public class URLFileHtml {
                 if (this.downloader(path, url)) {
                     return this.name + "_files/" + nameFile + typeFile;
                 } else return url;
-            } else return url;
+            } else {
+
+                return url;
+            }
         } else return url;
     }
 

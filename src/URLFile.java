@@ -62,6 +62,7 @@ public class URLFile {
         //Pattern patternURL = Pattern.compile("^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$", Pattern.DOTALL);
         //Matcher matcherURL = patternURL.matcher(url);
         //return matcherURL.find();
+        url = url.split("\\?")[0];
         return url.matches("^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$");
     }
 

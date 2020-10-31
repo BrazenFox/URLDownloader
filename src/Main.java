@@ -30,8 +30,8 @@ public class Main {
                 //javac -d out ./src/*
                 //java -classpath ./out Main
                 //https://www.goodfon.ru/ C://Users/DmitryMarokhonov/Desktop/test -o
-                run("https://sb.edu-netcracker.com/user/default.html", "C://Users/DmitryMarokhonov/Desktop/test", open);
-                //run("https://stackoverflow.com/questions/24874404/java-regex-look-behind-group-does-not-have-obvious-maximum-length-error",  "C://Users/DmitryMarokhonov/Desktop/test", open);
+                //run("https://sb.edu-netcracker.com/user/default.html", "C://Users/DmitryMarokhonov/Desktop/test", open);
+                run("https://stackoverflow.com/questions/24874404/java-regex-look-behind-group-does-not-have-obvious-maximum-length-error?lq=1",  "C://Users/DmitryMarokhonov/Desktop/test", open);
                 //run("https://www.goodfon.ru/", "C://Users/DmitryMarokhonov/Desktop/test", open);
                 System.out.println("некорректный ввод");
         }
